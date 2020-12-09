@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rufus-deployment
+  labels:
+    app: rufus
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rufus
+  template:
+    metadata:
+      labels:
+        app: rufus
+    spec:
+      containers:
+      - name: django-cont
+        image: limonadev/cloud_django_backend:thirdversion
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: 100m
